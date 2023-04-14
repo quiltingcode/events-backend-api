@@ -10,11 +10,11 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     bio = models.TextField(blank=True)
     website = models.URLField(max_length=200, blank=True)
-    instagram = models.URLField(max_length=200, blank=True)
-    facebook = models.URLField(max_length=200, blank=True)
-    phone = models.CharField(max_length=20)
+    instagram_link = models.URLField(max_length=200, blank=True)
+    facebook_link = models.URLField(max_length=200, blank=True)
+    phone_number = models.IntegerField(max_length=20, blank=True)
     profile_pic = models.ImageField(
-        upload_to='images/', default='../profile-pic_nfhakf'
+        upload_to='images/', default='../default-avatar_qvwzg2'
     )
 
     class Meta:
