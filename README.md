@@ -47,3 +47,10 @@ However, additional custom models have also been developed where possible such a
 + As a developer/superuser I can edit an event that I created so that I can amend any missing or incorrect information on the event posting
 + As a developer/superuser I can delete an event which I created so that I can delete event data from the API
 
+### Comments
+
++ As a developer/superuser I can create a comment so that I can link a comment to an event
++ As a developer/superuser I can view a list of all comments so that I can see all comments created in the API
++ As a developer/superuser I can edit a comment that I created so that I can amend any missing or incorrect information
++ As a developer/superuser I can delete a comment which I created so that I can delete comment data from the API
+
