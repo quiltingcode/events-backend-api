@@ -38,3 +38,12 @@ However, additional custom models have also been developed where possible such a
 + As a developer/superuser I can view the details of one profile so that I can see individual profile data
 + As a developer/superuser I can edit a profile when I am logged in so that update my personal information
 + As a developer/superuser I can delete a profile that I own so that I can delete my user account from the API
+
+### Events
+
++ As a developer/superuser I can view a list of all events so that I can see all events at once
++ As a developer/superuser I can view a single event so that I can see single event details, including comments
++ As a developer/superuser I can create a new event so that this event will be displayed in the events list
++ As a developer/superuser I can edit an event that I created so that I can amend any missing or incorrect information on the event posting
++ As a developer/superuser I can delete an event which I created so that I can delete event data from the API
+
