@@ -51,6 +51,43 @@ However, additional custom models have also been developed where possible such a
 
 + As a developer/superuser I can create a comment so that I can link a comment to an event
 + As a developer/superuser I can view a list of all comments so that I can see all comments created in the API
++ As a developer/superuser I can retrieve a single comment by ID so that I can edit or delete this comment
 + As a developer/superuser I can edit a comment that I created so that I can amend any missing or incorrect information
 + As a developer/superuser I can delete a comment which I created so that I can delete comment data from the API
 
+### Interested
+
++ As a developer/superuser I can create an interested object linked to a single event so that I can show interest in an event
++ As a developer/superuser I can delete an interested object which I created so that I can delete interested data from the API
++ As a developer/superuser I can not delete an interested object which I did not create
++ As a developer/superuser I can view a list of all interested objects so that I can see all interested objects created in the API
+
+### Going
+
++ As a developer/superuser I can create a going object linked to a single event so that I can show confirmed attendance to an event
++ As a developer/superuser I can delete a going object which I created so that I can delete going data from the API
++ As a developer/superuser I can not delete a going object which I did not create
++ As a developer/superuser I can view a list of all going objects so that I can see all going objects created in the API
+
+### Followers
+
+### Search and Filter
+
+### Reviews
+
+# Database Designs
+
+## Models
+
+I have created the following models for the Happening Backend API:
+ * User (slightly customized from the Django standard User model)
+ * Profile (automatically created on User creation)
+ * Event (A post publicising a future event)
+ * Comment (To make a comment on an event while it's being promoted)
+ * Interested (To indicate if a user thinks the event sounds good)
+ * Going (To indicate if the user plans to attend the event)
+ * Follow (For users to follow event hosts)
+ * Review (For users to rate and add a review comment post event)
+
+The relationships between all of these models is summarized in the followed entity relationship diagram:
+![erd](images/events-erd.drawio.png)
