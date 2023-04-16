@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import Interested
+from .models import Going
 
 
-class InterestedSerializer(serializers.ModelSerializer):
+class GoingSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
-        model = Interested
+        model = Going
         fields = [
             'id', 'owner', 'created_at', 'event',
         ]
