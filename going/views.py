@@ -11,3 +11,9 @@ class GoingList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class GoingDetail(generics.RetrieveDestroyAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = GoingSerializer
+    queryset = Going.objects.all()
