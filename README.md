@@ -10,8 +10,14 @@
     + [Followers](#followers)
     + [Search and Filter](#search-and-filter)
     + [Reviews](#reviews)
+    + [Contact](#contact)
 - [Database Design](#database-design)
   * [Models](#models)
+- [Features](#features)
+- [Agile Workflow](#agile-workflow)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
 
 # Happening Backend
 
@@ -71,9 +77,25 @@ However, additional custom models have also been developed where possible such a
 
 ### Followers
 
++ As a developer/superuser I can create a follow so that I can follow another user
++ As a developer/superuser I can view a list of follows so that I can see all the follows that have been created
++ As a developer/superuser I can delete a follow so that I can unfollow another user profile
+
+
 ### Search and Filter
 
++ As a developer/superuser I can search and filter the events so that I don't have to manually query the database to find a specific result
+
 ### Reviews
+
++ As a developer/superuser I can create a review so that I can link a review and rating to an event
++ As a developer/superuser I can view a list of all reviews so that I can see all reviews created in the API
++ As a developer/superuser I can edit a review that I created so that I can amend any missing or incorrect information
++ As a developer/superuser I can delete a review which I created so that I can delete review data from the API
+
+### Contact
+
+
 
 # Database Designs
 
@@ -88,6 +110,17 @@ I have created the following models for the Happening Backend API:
  * Going (To indicate if the user plans to attend the event)
  * Follow (For users to follow event hosts)
  * Review (For users to rate and add a review comment post event)
+ * Contact (To send a message to the email address in a profile)
 
 The relationships between all of these models is summarized in the followed entity relationship diagram:
 ![erd](images/events-erd.drawio.png)
+
+# Features
+
+# Agile Workflow
+
+# Testing
+
+# Deployment
+
+# Credits
