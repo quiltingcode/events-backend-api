@@ -1,11 +1,14 @@
 from rest_framework import serializers
 from .models import Event
+from taggit.serializers import (TagListSerializerField,
+                                TaggitSerializer)
 
 
-class EventSerializer(serializers.ModelSerializer):
+class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    tags = TagListSerializerField()
     profile_image = serializers.ReadOnlyField(
         source='owner.profile.profile_pic.url'
     )

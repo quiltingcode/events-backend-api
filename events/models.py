@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
+from taggit.managers import TaggableManager
 
 EVENT_CATEGORIES = (
     ("Sport", "Sport"),
@@ -36,7 +37,11 @@ class Event(models.Model):
         max_length=32, choices=image_filter_choices, default='Normal'
     )
     event_date = models.DateField(default=date.today)
-    tags = models.CharField(max_length=100, blank=True)
+    tags = TaggableManager(
+        help_text='A comma-separated list of tags',
+        blank=True,
+        verbose_name='Tags'
+    )
     category = models.CharField(
         max_length=50, choices=EVENT_CATEGORIES, default='Culture'
     )
