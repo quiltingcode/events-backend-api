@@ -1,9 +1,9 @@
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
-from .models import Comment
+from .models import Review
 
 
-class CommentSerializer(serializers.ModelSerializer):
+class ReviewSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -16,16 +16,17 @@ class CommentSerializer(serializers.ModelSerializer):
         return request.user == obj.owner
 
     class Meta:
-        model = Comment
+        model = Review
         fields = [
             'id', 'owner', 'created_at', 'updated_at', 'event',
-            'content', 'is_owner', 'profile_id', 'profile_image',
+            'review', 'rating', 'is_owner', 'profile_id',
+            'profile_image',
         ]
 
 
-class CommentDetailSerializer(CommentSerializer):
+class ReviewDetailSerializer(ReviewSerializer):
     """
-    Serializer for the Comment model used in Detail view
+    Serializer for the Review model used in Detail view
     event is a read only field so that we dont have to set it on each update
     """
     event = serializers.ReadOnlyField(source='event.id')
