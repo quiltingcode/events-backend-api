@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Event
+from interested.models import Interested
 from taggit.serializers import (TagListSerializerField,
                                 TaggitSerializer)
 
@@ -12,6 +13,7 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(
         source='owner.profile.profile_pic.url'
     )
+    interested_id = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -32,11 +34,22 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             )
         return value
 
+    def get_interested_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            interested = Interested.objects.filter(
+                owner=user, event=obj
+            ).first()
+            print(interested)
+            return interested.id if interested else None
+        return None
+
     class Meta:
         model = Event
         fields = [
             'id', 'owner', 'created_at', 'updated_at',
             'title', 'description', 'image', 'event_date',
             'tags', 'category', 'is_owner', 'profile_id',
-            'profile_image', 'image_filter'
+            'profile_image', 'image_filter', 'interested_id',
+
         ]
