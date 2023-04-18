@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Event
 from interested.models import Interested
+from going.models import Going
 from taggit.serializers import (TagListSerializerField,
                                 TaggitSerializer)
 
@@ -14,6 +15,7 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
         source='owner.profile.profile_pic.url'
     )
     interested_id = serializers.SerializerMethodField()
+    going_id = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -40,8 +42,16 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             interested = Interested.objects.filter(
                 owner=user, event=obj
             ).first()
-            print(interested)
             return interested.id if interested else None
+        return None
+
+    def get_going_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            going = Going.objects.filter(
+                owner=user, event=obj
+            ).first()
+            return going.id if going else None
         return None
 
     class Meta:
@@ -51,5 +61,5 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             'title', 'description', 'image', 'event_date',
             'tags', 'category', 'is_owner', 'profile_id',
             'profile_image', 'image_filter', 'interested_id',
-
+            'going_id',
         ]
