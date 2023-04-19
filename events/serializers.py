@@ -16,6 +16,11 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
     )
     interested_id = serializers.SerializerMethodField()
     going_id = serializers.SerializerMethodField()
+    comments_count = serializers.ReadOnlyField()
+    interested_count = serializers.ReadOnlyField()
+    going_count = serializers.ReadOnlyField()
+    reviews_count = serializers.ReadOnlyField()
+    average_rating = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -61,5 +66,6 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             'title', 'description', 'image', 'event_date',
             'tags', 'category', 'is_owner', 'profile_id',
             'profile_image', 'image_filter', 'interested_id',
-            'going_id',
+            'going_id', 'comments_count', 'interested_count',
+            'going_count', 'reviews_count', 'average_rating',
         ]
