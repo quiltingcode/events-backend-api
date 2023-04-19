@@ -1,7 +1,8 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from events_api.permissions import IsOwnerOrReadOnly
 from .models import Review
 from .serializers import ReviewSerializer, ReviewDetailSerializer
+from django.db.models import Count, Avg
 
 
 class ReviewList(generics.ListCreateAPIView):
