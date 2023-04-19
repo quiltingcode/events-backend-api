@@ -20,8 +20,8 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = [
-            'id', 'owner' 'is_owner', 'message', 'created_at',
-            'updated_at', 'profile' 'profile_id', 'profile_image',
+            'id', 'owner', 'is_owner', 'message', 'created_at',
+            'updated_at', 'profile', 'profile_id', 'profile_image',
         ]
 
 
