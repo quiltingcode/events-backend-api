@@ -37,4 +37,9 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.annotate(
+        events_count=Count('owner__event', distinct=True),
+        followers_count=Count('owner__followed', distinct=True),
+        following_count=Count('owner__following', distinct=True),
+        going_count=Count('owner__going', distinct=True),
+    ).order_by('-created_at')
