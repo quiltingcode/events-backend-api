@@ -93,6 +93,7 @@ However, additional custom models have also been developed where possible such a
 + As a developer/superuser I can view filtered fields so that I can easily see the comments count when viewing an event
 + As a developer/superuser I can view filtered fields so that I can easily see the average rating when viewing an event
 + As a developer/superuser I can view filtered fields so that I can easily see the review counts when viewing a review
++ As a developer/superuser I can see a search field in the events list so that I can search for a specific event
 
 ### Reviews
 
@@ -103,6 +104,10 @@ However, additional custom models have also been developed where possible such a
 
 ### Contact
 
++ As a developer/superuser I can create a contact so that I can see messages created
++ As a developer/superuser I can view a list of all contacts so that I can see all contacts created in the API
++ As a developer/superuser I can edit a contact that I created so that I can amend any missing or incorrect information
++ As a developer/superuser I can delete a contact which I created so that I can delete contact data from the API
 
 
 # Database Designs
