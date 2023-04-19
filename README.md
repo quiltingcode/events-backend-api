@@ -84,7 +84,15 @@ However, additional custom models have also been developed where possible such a
 
 ### Search and Filter
 
-+ As a developer/superuser I can search and filter the events so that I don't have to manually query the database to find a specific result
++ As a developer/superuser I can view filtered fields so that I can see the events created count when viewing a profile
++ As a developer/superuser I can view filtered fields so that I can see the events attended count when viewing a profile
++ As a developer/superuser I can view filtered fields so that I can see the followers count when viewing a profile
++ As a developer/superuser I can view filtered fields so that I can see the following count when viewing a profile
++ As a developer/superuser I can view filtered fields so that I can easily see the interested count when viewing an event
++ As a developer/superuser I can view filtered fields so that I can easily see the going count when viewing an event
++ As a developer/superuser I can view filtered fields so that I can easily see the comments count when viewing an event
++ As a developer/superuser I can view filtered fields so that I can easily see the average rating when viewing an event
++ As a developer/superuser I can view filtered fields so that I can easily see the review counts when viewing a review
 
 ### Reviews
 
