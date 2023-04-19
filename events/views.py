@@ -22,7 +22,14 @@ class EventList(generics.ListCreateAPIView):
         average_rating=Avg('reviews__rating', distinct=True),
     ).order_by('-created_at')
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        filters.SearchFilter
+    ]
+    search_fields = [
+        'owner__username',
+        'title',
+        'event_date',
+        'tags__name',
     ]
     ordering_fields = [
         'comments_count',
