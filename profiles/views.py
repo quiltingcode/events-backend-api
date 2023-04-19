@@ -13,7 +13,7 @@ class ProfileList(generics.ListAPIView):
     """
     serializer_class = ProfileSerializer
     queryset = Profile.objects.annotate(
-        post_count=Count('owner__post', distinct=True),
+        events_count=Count('owner__event', distinct=True),
         followers_count=Count('owner__followed', distinct=True),
         following_count=Count('owner__following', distinct=True),
         going_count=Count('owner__going', distinct=True),
@@ -22,7 +22,7 @@ class ProfileList(generics.ListAPIView):
         filters.OrderingFilter
     ]
     ordering_fields = [
-        'posts_count',
+        'events_count',
         'followers_count',
         'following_count',
         'going_count',
