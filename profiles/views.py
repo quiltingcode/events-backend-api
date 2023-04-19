@@ -15,8 +15,20 @@ class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
         post_count=Count('owner__post', distinct=True),
         followers_count=Count('owner__followed', distinct=True),
-        following_count=Count('owner__following', distinct=True)
+        following_count=Count('owner__following', distinct=True),
+        going_count=Count('owner__going', distinct=True),
     ).order_by('-created_at')
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'posts_count',
+        'followers_count',
+        'following_count',
+        'going_count',
+        'owner__following__created_at',
+        'owner__followed__created_at',
+    ]
 
 
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
