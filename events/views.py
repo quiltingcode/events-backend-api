@@ -18,6 +18,8 @@ class EventList(generics.ListCreateAPIView):
         comments_count=Count('comment', distinct=True),
         interested_count=Count('interested', distinct=True),
         going_count=Count('going', distinct=True),
+        review_count=Count('reviews', distinct=True),
+        average_rating=Avg('reviews__rating', distinct=True),
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter
@@ -26,7 +28,7 @@ class EventList(generics.ListCreateAPIView):
         'comments_count',
         'interested_count',
         'going_count',
-        'reviews_count',
+        'review_count',
         'average_rating',
         'interested__created_at',
         'going__created_at',
@@ -43,5 +45,4 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
         comments_count=Count('comment', distinct=True),
         interested_count=Count('interested', distinct=True),
         going_count=Count('going', distinct=True),
-
     ).order_by('-created_at')
