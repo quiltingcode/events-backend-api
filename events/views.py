@@ -3,6 +3,14 @@ from .models import Event
 from .serializers import EventSerializer
 from events_api.permissions import IsOwnerOrReadOnly
 from django.db.models import Count, Avg
+from django_filters.rest_framework import DjangoFilterBackend
+
+
+# class EventFilter(filters.FilterSet):
+    # user_feed = filters.AllValuesMultipleFilter('interested__owner__profile', 'going__owner__profile')
+    # my_events = filters.AllValuesMultipleFilter('interested__owner__profile', 'going__owner__profile')
+    # profile_posts = filters.filterset_fields('owner__profile')
+    # category_filter = filters.filterset_fields('category')
 
 
 class EventList(generics.ListCreateAPIView):
@@ -23,7 +31,16 @@ class EventList(generics.ListCreateAPIView):
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
-        filters.SearchFilter
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    # filterset_class = EventFilter
+    filterset_fields = [
+        'owner__followed__owner__profile',
+        'interested__owner__profile',
+        'going__owner__profile',
+        'owner__profile',
+        'category',
     ]
     search_fields = [
         'owner__username',
