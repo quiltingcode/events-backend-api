@@ -3,6 +3,7 @@ from events_api.permissions import IsOwnerOrReadOnly
 from .models import Review
 from .serializers import ReviewSerializer, ReviewDetailSerializer
 from django.db.models import Count, Avg
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ReviewList(generics.ListCreateAPIView):
@@ -12,6 +13,8 @@ class ReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Review.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['event']
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
