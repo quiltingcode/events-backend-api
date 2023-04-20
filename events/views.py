@@ -6,13 +6,6 @@ from django.db.models import Count, Avg
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-# class EventFilter(filters.FilterSet):
-    # user_feed = filters.AllValuesMultipleFilter('interested__owner__profile', 'going__owner__profile')
-    # my_events = filters.AllValuesMultipleFilter('interested__owner__profile', 'going__owner__profile')
-    # profile_posts = filters.filterset_fields('owner__profile')
-    # category_filter = filters.filterset_fields('category')
-
-
 class EventList(generics.ListCreateAPIView):
     """
     List posts or create a post if logged in
@@ -34,7 +27,6 @@ class EventList(generics.ListCreateAPIView):
         filters.SearchFilter,
         DjangoFilterBackend,
     ]
-    # filterset_class = EventFilter
     filterset_fields = [
         'owner__followed__owner__profile',
         'interested__owner__profile',
@@ -56,6 +48,7 @@ class EventList(generics.ListCreateAPIView):
         'average_rating',
         'interested__created_at',
         'going__created_at',
+        'event_date',
     ]
 
     def perform_create(self, serializer):
