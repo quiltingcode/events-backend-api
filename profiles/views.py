@@ -1,4 +1,4 @@
-
+from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Count
 from rest_framework import generics, filters
 from .models import Profile
@@ -19,7 +19,11 @@ class ProfileList(generics.ListAPIView):
         going_count=Count('owner__going', distinct=True),
     ).order_by('-created_at')
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'owner__following__followed__profile'
     ]
     ordering_fields = [
         'events_count',
