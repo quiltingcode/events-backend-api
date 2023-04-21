@@ -1,6 +1,6 @@
 # **Happening API**
 
-# Table of Contents
+## Table of Contents
 
 - [Project](#project)
   * [Objective](#objective)
@@ -269,15 +269,67 @@ If the user logs in, a form becomes visible under the interested list to create 
 
 ![Create an Interested Post](images/create-interested-form.png)
 
+If a user tries to post interest to the same event twice, they see an error message saying that they are already interested in the selected event, and the duplicate interested post is not created.
+
+![Create Duplicate Interested](images/interested-no-duplicates.png)
+
 Once logged in, if the user views the details of a single interested post which they created additional Delete functionality becomes available. It is not possible to Edit an interested post.
 
 ![Delete an Interested Post](images/interested-delete.png)
 
 ## Going Data
 
+Within the Going List section, a user can view a list of all going posts in the API. 
+
+![Going List](images/going-page.png)
+
+If the user logs in, a form becomes visible under the going list to create a new going post. The event they want to be going to can be selected from the dropdown, to link the going post with the event.
+
+![Create a Going Post](images/create-going-form.png)
+
+If a user tries to post going to the same event twice, they see an error message saying that they are already going to the selected event, and the duplicate going post is not created.
+
+![Create Duplicate Going](images/going-no-duplicates.png)
+
+Once logged in, if the user views the details of a single going post which they created additional Delete functionality becomes available. It is not possible to Edit a going post.
+
+![Delete a Going Post](images/going-delete.png)
+
 ## Followers Data
 
+Within the Follower List section, a user can view a list of all follower posts in the API. 
+
+![Follower List](images/follower-page.png)
+
+If the user logs in, a form becomes visible under the follower list to create a new follower post. The user they want to follow can be selected from the dropdown, to link the follower post with another user profile.
+
+![Create a Follower Post](images/create-follower-form.png)
+
+If a user tries to follow the same profile twice, they see an error message saying that they are already following the selected profile, and the duplicate follow post is not created.
+
+![Create Duplicate Follower](images/follower-no-duplicates.png)
+
+Once logged in, if the user views the details of a single follower post which they created additional Delete functionality becomes available. It is not possible to Edit a follower post.
+
+![Delete a Follower Post](images/follower-delete.png)
+
 ## Reviews Data
+
+Within the Review List section, a user can view a list of all reviews in the API. 
+
+![Review List](images/reviews-page.png)
+
+Besides the fields created in the Review model (as shown in the ERD Diagram), through the serializer, I also added the following fields to the JSON data:
+
+* is_owner
+* profile_id
+* profile_image
+
+I also set up one field filter to filter the reviews by the event they are reviewing.
+
+If the user logs in, a form becomes visible under the reviews list to create a new review. The event they want to review can be selected from the dropdown, and a review text and rating must be entered to post the review successfully.
+
+![Create a Review](images/create-review-form.png)
 
 ## Contact Data
 
