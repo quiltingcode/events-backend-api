@@ -29,6 +29,7 @@
   * [Reviews Data](#reviews-data)
   * [Contact Data](#contact-data)
 - [Agile Workflow](#agile-workflow)
+  * [Github Project Board](#github-project-board)
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Credits](#credits)
@@ -331,9 +332,46 @@ If the user logs in, a form becomes visible under the reviews list to create a n
 
 ![Create a Review](images/create-review-form.png)
 
+If a user tries to review same event twice, they see an error message saying that they have already reviewed the selected event, and the duplicate review is not created.
+
+![Create Duplicate Review](images/reviews-no-duplicates.png)
+
+Once logged in, if the user views the details of a single review which they created additional Update and Delete functionality becomes available. Below the comment data, a pre-populated form is available to edit the comment. At the top of the screen, a delete button is available to delete the comment from the API.
+
+![Review Edit Form](images/review-edit.png)
+
 ## Contact Data
 
+Within the Contact List section, a user can view a list of all contacts posted in the API. 
+
+![Contact List](images/contact-page.png)
+
+Besides the fields created in the Contact model (as shown in the ERD Diagram), through the serializer, I also added the following fields to the JSON data:
+
+* is_owner
+* profile_id
+* profile_image
+
+If the user logs in, a form becomes visible under the contact list to create a new contact. The profile they want to contact can be selected from the dropdown, and a message text must be entered to post the contact successfully.
+
+![Create a Contact](images/create-contact-form.png)
+
+Once logged in, if the user views the details of a single contact which they created additional Update and Delete functionality becomes available. Below the contact data, a pre-populated form is available to edit the contact. At the top of the screen, a delete button is available to delete the contact from the API.
+
+![Contact Edit Form](images/contact-edit.png)
+
 # Agile Workflow
+
+## Github Project Board
+
+I used the Kanban project board in Github to build this API using Agile principles from the start. The user stories created are for a developer or superuser to follow and test throughout the build process. I created a Milestone for each app (model) that I created, which I used to mark out the individual sprints of the project, and within each milestone are the related developer user stories. 
+
+Each user story has a level of prioritisation using the MoSCoW method and a number of User Story points to indicate the level of difficulty for that feature. 
+
+When each feature was built and committed in GitPod, the commit message has been linked to the relevant User Story. 
+
+![GitHub Project Board](images/api-project-board.png)
+![GitHub User Stories](images/user-stories.png)
 
 # Testing
 
