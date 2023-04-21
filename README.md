@@ -1,4 +1,9 @@
-- [Happening Backend](#happening-backend)
+# **Happening API**
+
+# Table of Contents
+
+- [Project](#project)
+  * [Objective](#objective)
   * [Links to Deployed Project](#links-to-deployed-project)
 - [Project Structure](#project-structure)
   * [Developer User Stories](#developer-user-stories)
@@ -14,24 +19,36 @@
 - [Database Design](#database-design)
   * [Models](#models)
 - [Features](#features)
+  * [Homepage](#homepage)
+  * [Profile Data](#profile-list)
+  * [Events Data](#events-list)
+  * [Comments Data](#comments-data)
+  * [Interested Data](#interested-data)
+  * [Going Data](#going-data)
+  * [Followers Data](#followers-data)
+  * [Reviews Data](#reviews-data)
+  * [Contact Data](#contact-data)
 - [Agile Workflow](#agile-workflow)
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Credits](#credits)
 
-# Happening Backend
+# **Project**
 
-  I live in a small town of around 15,000 people in the south of Spain, where lots of great events happen, but unlike in the big cities, there are no websites or applications dedicated to publicising the event information out to the people. 
+## Objective
 
-  Happening API provides a backend database to create, view, edit and delete event information for my town. A user who wishes to share an event can upload information about the event, including the date, a description, a category for who it's ideally aimed at, an image or event poster, and keyword tags. A user who wishes to attend events can follow event hosts, show their interest in an event, mark as attending an event, comment on an event and write a review or leave a rating for an event.
+I live in a small town of around 15,000 people in the south of Spain, where lots of great events happen, but unlike in the big cities, there are no websites or applications dedicated to publicising the event information out to the people. 
 
-  The API also includes search and filter logic to improve user experience, and make it easier for users to find events tailored to their own interests. 
+Happening API provides a backend database to create, view, edit and delete event information for my town. A user who wishes to share an event can upload information about the event, including the date, a description, a category for who it's ideally aimed at, an image or event poster, and keyword tags. A user who wishes to attend events can follow event hosts, show their interest in an event, mark as attending an event, comment on an event and write a review or leave a rating for an event.
 
-  ## Links to Deployed Project
-    + The project is deployed on Heroku and is available at the folowing link: [Deployed Happening API](https://events-api.herokuapp.com/)
-    + The link for the GitHub repo to corresponding front end for this project is here: [Happening Front End](https://github.com/)
+The API also includes search and filter logic to improve user experience, and make it easier for users to find events tailored to their own interests. 
 
-# Project Structure
+## Links to Deployed Project
+
+  + The project is deployed on Heroku and is available at the folowing link: [Deployed Happening API](https://happening-api-kelz.herokuapp.com/)
+  + The link for the GitHub repo to corresponding front end for this project is here: [Happening Front End](https://github.com/)
+
+## Project Structure
 
 The overall structure of the project was modelled on the [drf-api](https://github.com/Code-Institute-Solutions/drf-api) walkthrough due to time constraints and the Project 5 assessments requirements including most of what is included in the walkthrough project.
 
@@ -84,16 +101,15 @@ However, additional custom models have also been developed where possible such a
 
 ### Search and Filter
 
-+ As a developer/superuser I can view filtered fields so that I can see the events created count when viewing a profile
-+ As a developer/superuser I can view filtered fields so that I can see the events attended count when viewing a profile
-+ As a developer/superuser I can view filtered fields so that I can see the followers count when viewing a profile
-+ As a developer/superuser I can view filtered fields so that I can see the following count when viewing a profile
-+ As a developer/superuser I can view filtered fields so that I can easily see the interested count when viewing an event
-+ As a developer/superuser I can view filtered fields so that I can easily see the going count when viewing an event
-+ As a developer/superuser I can view filtered fields so that I can easily see the comments count when viewing an event
-+ As a developer/superuser I can view filtered fields so that I can easily see the average rating when viewing an event
-+ As a developer/superuser I can view filtered fields so that I can easily see the review counts when viewing a review
 + As a developer/superuser I can see a search field in the events list so that I can search for a specific event
++ As a developer/superuser I can filter the events list by category so that I can see only the events relating to one desired category
++ As a developer/superuser I can view a list of events by profiles I follow so that I can see only the events relating to profiles that I like
++ As a developer/superuser I can view a list of profiles followed by another profile so that I can see which profiles are following it
++ As a developer/superuser I can view a list of events I have posted an interested or going id to so that I can see only the events I am interested in attending
++ As a developer/superuser I can view a list of events relating to just one profile so that I can see only the events posted by a single user
++ As a developer/superuser I can view a list of comments linked to a particular event so that I can see see the comments relating to one single event id
++ As a developer/superuser I can view a list of reviews linked to a particular event so that I can see see the reviews relating to one single event id
+
 
 ### Reviews
 
@@ -129,6 +145,141 @@ The relationships between all of these models is summarized in the followed enti
 ![erd](images/events-erd.drawio.png)
 
 # Features
+
+## Homepage
+
+When you first enter the API site, you are directed to the Root Route hompage, with a message welcoming you to the API for Happening. 
+
+![homepage](images/homepage.png)
+
+## Profile Data
+
+Within the Profile List section, a user can view a list of all profiles in the API. Create functionality is not enabled, as the process is done automatically through the user registration process. 
+
+![Profile List](images/profile-page.png)
+
+Besides the fields created in the Profile model (as shown in the ERD Diagram), through the serializer, I also added the following fields to the JSON data:
+
+* is_owner
+* following_id
+* events_count
+* followers_count
+* following_count
+* going_count
+
+I have set up ordering for the profile list, and selected the following parameters to sort the profiles by:
+
+* events_count
+* followers_count
+* following_count
+* going_count
+* owner__following_created_at
+* owner__followed_created_at
+
+I have set up two field filters on the events list to filter as follows:
+
+1. Profiles that are following the logged in user
+2. Profiles that are being followed by the logged in user
+
+If the user logs in, and views the detail of their own profile, additional Update and Delete functionality becomes available. Below the profile data, a pre-populated form is available to edit the profile model fields. At the top of the screen, a delete button is available to delete the profile from the API.
+
+![Profile Edit Form](images/profile-edit.png)
+
+## Events Data
+
+Within the Events List section, a user can view a list of all events in the API. 
+
+![Events List](images/events-page.png)
+
+Besides the fields created in the Event model (as shown in the ERD Diagram), through the serializer, I also added the following fields to the JSON data:
+
+* is_owner
+* profile_id
+* profile_image
+* image_filter
+* interested_id
+* going_id
+* comments_count
+* interested_count
+* going_count
+* review_count
+* average_rating
+
+I have set up ordering for the events list, and selected the following parameters to sort the events by:
+
+* comments_count
+* interested_count
+* going_count
+* review_count
+* average_rating
+* interested_created_at
+* going_created_at
+* event_date
+
+I have set up a search function whereby the full events list can be searched on by the event owner, title, event data, or event tags.
+
+I have set up five field filters on the events list to filter as follows:
+
+1. Events whose owners the logged in user is following - This will be the front end 'Feed' page
+2. Events which the logged in user has posted interested in - This will combine with filter 3 to be the front end 'My Events' page 
+
+3. Events which the logged in user has posted going to - This will combine with filter 2 to be the front end 'My Events' page
+
+4. All events posted by user - This will be used in the 'Profile' page
+
+5. All events in one category - This filter will be visible on all front end Event List pages
+
+If the user logs in, a form becomes visible under the events list to create a new event. 
+
+![Create an Event](images/create-event-form.png)
+
+Once logged in, if the user views the details of a single event which they created additional Update and Delete functionality becomes available. Below the event data, a pre-populated form is available to edit the event. At the top of the screen, a delete button is available to delete the event from the API.
+
+![Event Edit Form](images/event-edit.png)
+
+## Comments Data
+
+Within the Comments List section, a user can view a list of all comments in the API. 
+
+![Comments List](images/comments-page.png)
+
+Besides the fields created in the Comment model (as shown in the ERD Diagram), through the serializer, I also added the following fields to the JSON data:
+
+* is_owner
+* profile_id
+* profile_image
+
+I also set up one field filter to filter the comments by the event they are commenting on.
+
+If the user logs in, a form becomes visible under the comments list to create a new comment. The event they want to comment on can be selected from the dropdown, and a comment text must be entered to post the comment successfully.
+
+![Create a Comment](images/create-comment-form.png)
+
+Once logged in, if the user views the details of a single comment which they created additional Update and Delete functionality becomes available. Below the comment data, a pre-populated form is available to edit the comment. At the top of the screen, a delete button is available to delete the comment from the API.
+
+![Comment Edit Form](images/comment-edit.png)
+
+## Interested Data
+
+Within the Interested List section, a user can view a list of all interested posts in the API. 
+
+![Interested List](images/interested-page.png)
+
+If the user logs in, a form becomes visible under the interested list to create a new interested post. The event they want to be interested in can be selected from the dropdown, to link the interest with the event.
+
+![Create an Interested Post](images/create-interested-form.png)
+
+Once logged in, if the user views the details of a single interested post which they created additional Delete functionality becomes available. It is not possible to Edit an interested post.
+
+![Delete an Interested Post](images/interested-delete.png)
+
+## Going Data
+
+## Followers Data
+
+## Reviews Data
+
+## Contact Data
 
 # Agile Workflow
 
