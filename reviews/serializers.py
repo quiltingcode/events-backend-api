@@ -1,6 +1,7 @@
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from .models import Review
+from django.db import IntegrityError
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -30,6 +31,14 @@ class ReviewSerializer(serializers.ModelSerializer):
             'review', 'rating', 'is_owner', 'profile_id',
             'profile_image',
         ]
+
+    def create(self, validated_data):
+        try:
+            return super().create(validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError({
+                'detail': 'You have already reviewed this event!'
+            })
 
 
 class ReviewDetailSerializer(ReviewSerializer):

@@ -8,7 +8,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class ReviewList(generics.ListCreateAPIView):
     """
-    List reviews or create a comment if logged in.
+    List reviews or create a review if logged in.
     """
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
