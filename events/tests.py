@@ -22,7 +22,9 @@ class EventListViewTests(APITestCase):
 
     def test_logged_in_user_can_create_event(self):
         self.client.login(username='kelly', password='letmein')
-        response = self.client.post('/events/', {'title': 'a title', 'tags': 'tag'})
+        response = self.client.post(
+            '/events/', {'title': 'a title', 'tags': 'tag'}
+        )
         count = Event.objects.count()
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -57,12 +59,24 @@ class EventDetailViewTests(APITestCase):
 
     def test_user_can_update_own_event(self):
         self.client.login(username='kelly', password='letmein')
-        response = self.client.put('/events/1/', {'title': 'concert'})
+        response = self.client.put(
+            '/events/1/', {'title': 'an edited title', 'tags': 'tag'}
+        )
         event = Event.objects.filter(pk=1).first()
-        self.assertEqual(event.title, 'concert')
+        self.assertEqual(event.title, 'an edited title')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_user_cant_update_someone_elses_post(self):
         self.client.login(username='kelly', password='letmein')
         response = self.client.put('/events/2/', {'title': 'an edited title'})
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_user_can_delete_their_own_event(self):
+        self.client.login(username='kelly', password='letmein')
+        response = self.client.delete('/events/1/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_user_cant_delete_someone_elses_event(self):
+        self.client.login(username='kelly', password='letmein')
+        response = self.client.delete('/events/2/')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
