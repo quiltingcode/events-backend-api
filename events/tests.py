@@ -66,7 +66,7 @@ class EventDetailViewTests(APITestCase):
         self.assertEqual(event.title, 'an edited title')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_user_cant_update_someone_elses_post(self):
+    def test_user_cant_update_someone_elses_event(self):
         self.client.login(username='kelly', password='letmein')
         response = self.client.put('/events/2/', {'title': 'an edited title'})
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
