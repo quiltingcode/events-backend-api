@@ -527,3 +527,10 @@ To clone and set up this project you need to follow the steps below.
 * ```python3 manage.py runserver``` - If everything i setup correctly the project is now live locally.
 
 # Credits
+
+* The default profile pic image was taken from [VectorStock](https://www.vectorstock.com/royalty-free-vectors/default-profile-vectors)
+* I watched a tutorial video on [YouTube](https://www.youtube.com/watch?v=D3iPIoTL9sk
+https://codingpr.com/star-rating-blog/
+) to learn about implementing a rating system into my reviews app
+* I learned about [Django Taggit](https://django-taggit.readthedocs.io/en/latest/api.html) before implementing this library into my events app
+* I also read this [dev.to](https://dev.to/tikam02/how-to-implement-django-search-field-and-tags-keywords-286a) blog on how to use tag fields effectively in a keyword search bar
