@@ -47,3 +47,7 @@ class Event(models.Model):
 
     def __str__(self):
         return f'{self.id} {self.title}'
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
