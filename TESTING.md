@@ -160,6 +160,16 @@ The following automatic tests have been written into the Happening API, in order
 | &check; | Can't delete someone else's review
 | &check; | Can't review the same event twice
 
+| Status | **Followers**
+|:-------:|:--------|
+| &check; | Can list followers
+| &check; | Logged out user can't follow
+| &check; | Logged in user can follow
+| &check; | Can retrieve followers using valid ID
+| &check; | Can't retrieve followers using invalid ID
+| &check; | Can delete follow from my own profile
+| &check; | Can't delete someone else's follow
+| &check; | Can't follow the same profile twice
 ## Known Bugs
 
 ### Resolved
