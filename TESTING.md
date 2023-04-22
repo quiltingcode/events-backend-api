@@ -147,6 +147,19 @@ The following automatic tests have been written into the Happening API, in order
 | &check; | Can delete own comment
 | &check; | Can't delete someone else's comment
 
+| Status | **Reviews**
+|:-------:|:--------|
+| &check; | Can list reviews
+| &check; | Logged out user can't create review
+| &check; | Logged in user can create review
+| &check; | Can retrieve review using valid ID
+| &check; | Can't retrieve review using invalid ID
+| &check; | Can update own review
+| &check; | Can't update someone else's review
+| &check; | Can delete own review
+| &check; | Can't delete someone else's review
+| &check; | Can't review the same event twice
+
 ## Known Bugs
 
 ### Resolved
