@@ -124,6 +124,16 @@ The following automatic tests have been written into the Happening API, in order
 | &check; | Can't delete someone else's interested
 | &check; | Can't post interested to the same event twice
 
+| Status | **Going**
+|:-------:|:--------|
+| &check; | Can list going
+| &check; | Logged out user can't create going
+| &check; | Logged in user can create going
+| &check; | Can retrieve going using valid ID
+| &check; | Can't retrieve going using invalid ID
+| &check; | Can delete own going
+| &check; | Can't delete someone else's going
+| &check; | Can't post going to the same event twice
 
 ## Known Bugs
 
@@ -131,3 +141,4 @@ The following automatic tests have been written into the Happening API, in order
 
 1. In my first project inception mentor meeting, I asked about what kind of field a 'Tags' model field would be, and whether it could just be a standard CharField. My mentor said that keywords should be stored in an array, so after further investigation I installed the Django Taggit Manager package to create an automatic array of words the user inputs into the events form 'tags' field. For some reason, however, despite using the blank=True attribute as per the Taggit docs, the API still requires this field to be filled in in order to sucessfully create a new event. I decided that this was not the end of the world and after a lot of research I left it as a required field. When I came to testing, my events tests were failing since I had changed over to Taggit, and so I had to amend the tests where an event is created to include a tags field as well as the title in order for the tests to pass. 
 
+Please click [**_here_**](README.md) to return to the Happening API README file.
