@@ -135,6 +135,18 @@ The following automatic tests have been written into the Happening API, in order
 | &check; | Can't delete someone else's going
 | &check; | Can't post going to the same event twice
 
+| Status | **Comments**
+|:-------:|:--------|
+| &check; | Can list comments
+| &check; | Logged out user can't create comment
+| &check; | Logged in user can create comment
+| &check; | Can retrieve comment using valid ID
+| &check; | Can't retrieve comment using invalid ID
+| &check; | Can update own comment
+| &check; | Can't update someone else's comment
+| &check; | Can delete own comment
+| &check; | Can't delete someone else's comment
+
 ## Known Bugs
 
 ### Resolved
