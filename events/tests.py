@@ -14,18 +14,18 @@ class EventListViewTests(APITestCase):
         response = self.client.get('/events/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_logged_in_user_can_create_event(self):
-        self.client.login(username='kelly', password='letmein')
-        response = self.client.post('/events/', {'title': 'event title'})
-        count = Event.objects.count()
-        self.assertEqual(count, 1)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
     def test_logged_out_user_cant_create_event(self):
         response = self.client.post('/events/', {'title': 'a title'})
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         count = Event.objects.count()
         self.assertEqual(count, 0)
+
+    def test_logged_in_user_can_create_event(self):
+        self.client.login(username='kelly', password='letmein')
+        response = self.client.post('/events/', {'title': 'a title', 'tags': 'tag'})
+        count = Event.objects.count()
+        self.assertEqual(count, 1)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
 class EventDetailViewTests(APITestCase):
@@ -34,26 +34,32 @@ class EventDetailViewTests(APITestCase):
         kelly = User.objects.create_user(username='kelly', password='letmein')
         greg = User.objects.create_user(username='greg', password='pass')
         Event.objects.create(
-            owner=kelly, title='a title', description='kellys event'
+            owner=kelly,
+            title='a title',
+            description='kellys event',
+            tags='tag'
         )
         Event.objects.create(
-            owner=greg, title='another title', description='gregs content'
+            owner=greg,
+            title='another title',
+            description='gregs content',
+            tags='sport'
         )
 
-    def test_can_retrieve_post_using_valid_id(self):
+    def test_can_retrieve_event_using_valid_id(self):
         response = self.client.get('/events/1/')
         self.assertEqual(response.data['title'], 'a title')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_cant_retrieve_post_using_invalid_id(self):
+    def test_cant_retrieve_event_using_invalid_id(self):
         response = self.client.get('/events/999/')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-    def test_user_can_update_own_post(self):
+    def test_user_can_update_own_event(self):
         self.client.login(username='kelly', password='letmein')
-        response = self.client.put('/events/1/', {'title': 'an edited title'})
+        response = self.client.put('/events/1/', {'title': 'concert'})
         event = Event.objects.filter(pk=1).first()
-        self.assertEqual(event.title, 'an edited title')
+        self.assertEqual(event.title, 'concert')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_user_cant_update_someone_elses_post(self):
