@@ -101,6 +101,17 @@ The Happening API has been passed through the internal PEP8 validation tests whi
 
 The following automatic tests have been written into the Happening API, in order to cover all the user story scenarios. These are the tests that were created: 
 
+| Status | **Profiles**
+|:-------:|:--------|
+| &check; | Profile automatically created on user creation
+| &check; | Can list profiles
+| &check; | Can retrieve profile using valid ID
+| &check; | Can't retrieve profile using invalid ID
+| &check; | Can update own profile
+| &check; | Can't update someone else's profile
+| &check; | Can delete own profile
+| &check; | Can't delete someone else's profile
+
 | Status | **Events**
 |:-------:|:--------|
 | &check; | Can list events
@@ -170,6 +181,12 @@ The following automatic tests have been written into the Happening API, in order
 | &check; | Can delete follow from my own profile
 | &check; | Can't delete someone else's follow
 | &check; | Can't follow the same profile twice
+
+| Status | **Contact**
+|:-------:|:--------|
+| &check; | Can list contacts
+
+
 ## Known Bugs
 
 ### Resolved
