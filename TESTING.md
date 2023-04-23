@@ -24,7 +24,6 @@ The Happening API has been passed through the internal PEP8 validation tests whi
 6. Select the 3 lines menu in the top left hand corner. Select 'View' and then 'Problems'. 
 6. PEP8 errors are now displayed in a list as well as being underlined in red in the central editor window.
 
-
 ### Events_api files
 
 * permissions.py - No problems or warnings found
@@ -100,6 +99,8 @@ The Happening API has been passed through the internal PEP8 validation tests whi
 ## Automatic Testing
 
 The following automatic tests have been written into the Happening API, in order to cover all the user story scenarios. These are the tests that were created: 
+
+![Automatic Test Summary](images/test-summary.png)
 
 | Status | **Profiles**
 |:-------:|:--------|
@@ -185,6 +186,76 @@ The following automatic tests have been written into the Happening API, in order
 | Status | **Contact**
 |:-------:|:--------|
 | &check; | Can list contacts
+| &check; | Logged out user can't create contact
+| &cross; | Logged in user can create contact
+| &check; | Can retrieve contact using valid ID
+| &check; | Can't retrieve contact using invalid ID
+| &check; | Can update own contact
+| &check; | Can't update someone else's contact
+| &check; | Can delete own contact
+| &check; | Can't delete someone else's contact
+
+## Manual Testing
+
+As well as the automatic tests which can be found in each app's testing.py file, I carried out the following additional manual tests:
+
+| Status | **Profiles**
+|:-------:|:--------|
+| &check; | Profile List can be ordered by events_count in ascending order
+| &check; | Profile List can be ordered by events_count in descending order
+| &check; | Profile List can be ordered by followers_count in ascending order
+| &check; | Profile List can be ordered by followers_count in descending order
+| &check; | Profile List can be ordered by following_count in ascending order
+| &check; | Profile List can be ordered by following_count in descending order
+| &check; | Profile List can be ordered by going_count in ascending order
+| &check; | Profile List can be ordered by going_count in descending order
+| &check; | Profile List can be ordered by owner__following__created_at in ascending order
+| &check; | Profile List can be ordered by owner__following__created_at in descending order
+| &check; | Profile List can be ordered by owner__followed__created_at in ascending order
+| &check; | Profile List can be ordered by owner__followed__created_at in descending order
+| &check; | Profile List can be filtered by owner__following__followed__profile
+| &check; | Profile List can be filtered by owner__followed__owner__profile
+
+| Status | **Events**
+|:-------:|:--------|
+| &check; | Event List can be ordered by comments_count in ascending order
+| &check; | Event List can be ordered by comments_count in descending order
+| &check; | Event List can be ordered by interested_count in ascending order
+| &check; | Event List can be ordered by interested_count in descending order
+| &check; | Event List can be ordered by going_count in ascending order
+| &check; | Event List can be ordered by going_count in descending order
+| &check; | Event List can be ordered by review_count in ascending order
+| &check; | Event List can be ordered by review_count in descending order
+| &check; | Event List can be ordered by average_rating in ascending order
+| &check; | Event List can be ordered by average_rating in descending order
+| &check; | Event List can be ordered by interested__created_at in ascending order
+| &check; | Event List can be ordered by interested__created_at in descending order
+| &check; | Event List can be ordered by going__created_at in ascending order
+| &check; | Event List can be ordered by going__created_at in descending order
+| &check; | Event List can be ordered by event_date in ascending order
+| &check; | Event List can be ordered by event_date in descending order
+| &check; | Event List can be searched on by owner 'admin'
+| &check; | Event List can be searched on by title 'event'
+| &check; | Event List can be searched on by tag 'sport'
+| &check; | Event List can be searched on by event_date '18'
+| &check; | Event List can be searched on by event_date '04' for all April events
+| &check; | Event List can be filtered by owner__followed__owner__profile
+| &check; | Event List can be filtered by interested__owner__profile
+| &check; | Event List can be filtered by going__owner__profile
+| &check; | Event List can be filtered by owner__profile
+| &check; | Event List can be filtered by category
+
+| Status | **Comments**
+|:-------:|:--------|
+| &check; | Comment List can be filtered by event
+
+| Status | **Reviews**
+|:-------:|:--------|
+| &check; | Review List can be filtered by event
+
+| Status | **Contact**
+|:-------:|:--------|
+| &check; | Logged in user can create comment
 
 
 ## Known Bugs
@@ -192,5 +263,11 @@ The following automatic tests have been written into the Happening API, in order
 ### Resolved
 
 1. In my first project inception mentor meeting, I asked about what kind of field a 'Tags' model field would be, and whether it could just be a standard CharField. My mentor said that keywords should be stored in an array, so after further investigation I installed the Django Taggit Manager package to create an automatic array of words the user inputs into the events form 'tags' field. For some reason, however, despite using the blank=True attribute as per the Taggit docs, the API still requires this field to be filled in in order to sucessfully create a new event. I decided that this was not the end of the world and after a lot of research I left it as a required field. When I came to testing, my events tests were failing since I had changed over to Taggit, and so I had to amend the tests where an event is created to include a tags field as well as the title in order for the tests to pass. 
+
+2. While testing the followers app, the test 'can_view_follower_list' kept failing and I couldn't understand why. I tried using the model field names for owner and followed but this didn't work. I tried using the related field names but this didn't work either. In the end, I realised while trying to replicate the process in the local server, the URL for Profile List was different. It was missing the last '/' so I amended this in the urls.py file and all the tests passed after this. 
+
+3. Setting up the tests for the contact app, I can't seem to create the test correctly for 'logged_out_user_can_create_contact' and 'logged_in_user_can_create_contact'.  I don't seem to be setting up the create object response correctly, and I asked tutor support and they were unable to tell me how to do it correctly. I decided to do manual tests on this app until I could seek further advice, and on beginning the manual testing, I found that my permsisions were not set up correctly, and I could in fact create a contact whilst being logged out, hence why my automatic test was failing. I have now changed the permissions, and the automatic test for 'logged_out_user_cant_create_contact is now passing. 
+
+![Contact Test Fail](images/fail_create_contact_test.png)
 
 Please click [**_here_**](README.md) to return to the Happening API README file.
