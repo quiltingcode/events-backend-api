@@ -59,6 +59,7 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             return going.id if going else None
         return None
 
+
     class Meta:
         model = Event
         fields = [
