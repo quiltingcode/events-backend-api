@@ -22,7 +22,7 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
     going_count = serializers.ReadOnlyField()
     review_count = serializers.ReadOnlyField()
     average_rating = serializers.ReadOnlyField()
-    event_date = serializers.SerializerMethodField()
+    # event_date = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -61,8 +61,8 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             return going.id if going else None
         return None
 
-    def get_event_date(self, obj):
-        return format(obj.event_date, 'jS F Y')
+    # def get_event_date(self, obj):
+    #     return format(obj.event_date, 'j F Y')
 
     class Meta:
         model = Event
