@@ -36,7 +36,7 @@ class Event(models.Model):
     image_filter = models.CharField(
         max_length=32, choices=image_filter_choices, default='Normal'
     )
-    event_date = models.DateField(default=date.today)
+    event_date = models.DateField(blank=False)
     tags = TaggableManager(blank=True)
     category = models.CharField(
         max_length=50, choices=EVENT_CATEGORIES, default='Culture'
