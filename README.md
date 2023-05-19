@@ -352,6 +352,8 @@ Besides the fields created in the Contact model (as shown in the ERD Diagram), t
 * profile_id
 * profile_image
 
+I also set up one field filter to filter the messages by the profile they are sent to.
+
 If the user logs in, a form becomes visible under the contact list to create a new contact. The profile they want to contact can be selected from the dropdown, and a message text must be entered to post the contact successfully.
 
 ![Create a Contact](images/create-contact-form.png)
