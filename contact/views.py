@@ -4,6 +4,7 @@ from .models import Contact
 from .serializers import ContactSerializer, ContactDetailSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
+
 class ContactList(generics.ListCreateAPIView):
     """
     List contacts or create a contact if logged in.
