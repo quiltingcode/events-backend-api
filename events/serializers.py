@@ -3,6 +3,7 @@ from django.utils.dateformat import format
 from .models import Event
 from interested.models import Interested
 from going.models import Going
+from reviews.models import Review
 from taggit.serializers import (TagListSerializerField,
                                 TaggitSerializer)
 
@@ -17,12 +18,12 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
     )
     interested_id = serializers.SerializerMethodField()
     going_id = serializers.SerializerMethodField()
+    review_id = serializers.SerializerMethodField()
     comments_count = serializers.ReadOnlyField()
     interested_count = serializers.ReadOnlyField()
     going_count = serializers.ReadOnlyField()
     review_count = serializers.ReadOnlyField()
     average_rating = serializers.ReadOnlyField()
-    # event_date = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -61,8 +62,14 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             return going.id if going else None
         return None
 
-    # def get_event_date(self, obj):
-    #     return format(obj.event_date, 'j F Y')
+    def get_review_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            review = Review.objects.filter(
+                owner=user, event=obj
+            ).first()
+            return review.id if review else None
+        return None
 
     class Meta:
         model = Event
@@ -73,4 +80,5 @@ class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
             'profile_image', 'image_filter', 'interested_id',
             'going_id', 'comments_count', 'interested_count',
             'going_count', 'review_count', 'average_rating',
+            'review_id',
         ]
