@@ -47,7 +47,7 @@ The API also includes search and filter logic to improve user experience, and ma
 ## Links to Deployed Project
 
   + The project is deployed on Heroku and is available at the folowing link: [Deployed Happening API](https://happening-api-kelz.herokuapp.com/)
-  + The link for the GitHub repo to corresponding front end for this project is here: [Happening Front End](https://github.com/)
+  + The link for the GitHub repo to corresponding front end for this project is here: [Happening Front End](https://github.com/quiltingcode/happening-react-frontend)
 
 ## Project Structure
 
