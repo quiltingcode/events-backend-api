@@ -200,6 +200,7 @@ Besides the fields created in the Event model (as shown in the ERD Diagram), thr
 * image_filter
 * interested_id
 * going_id
+* review_id
 * comments_count
 * interested_count
 * going_count
