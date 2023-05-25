@@ -12,7 +12,7 @@ class Profile(models.Model):
     website = models.URLField(max_length=200, blank=True)
     instagram_link = models.URLField(max_length=200, blank=True)
     facebook_link = models.URLField(max_length=200, blank=True)
-    phone_number = models.IntegerField(blank=True)
+    phone_number = models.IntegerField(blank=True, null=True)
     email = models.EmailField(max_length=255, blank=True)
     profile_pic = models.ImageField(
         upload_to='images/', default='../default-avatar_qvwzg2'
