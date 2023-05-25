@@ -220,9 +220,10 @@ I have set up ordering for the events list, and selected the following parameter
 
 I have set up a search function whereby the full events list can be searched on by the event owner, title, event data, or event tags.
 
-I have set up five field filters on the events list to filter as follows:
+I have set up six field filters on the events list to filter as follows:
 
 1. Events whose owners the logged in user is following - This will be the front end 'Feed' page
+
 2. Events which the logged in user has posted interested in - This will combine with filter 3 to be the front end 'My Events' page 
 
 3. Events which the logged in user has posted going to - This will combine with filter 2 to be the front end 'My Events' page
@@ -230,6 +231,8 @@ I have set up five field filters on the events list to filter as follows:
 4. All events posted by user - This will be used in the 'Profile' page
 
 5. All events in one category - This filter will be visible on all front end Event List pages
+
+6. Events which are less than or equal to a number - This is used for the reviews page to filter out all events with an event_date in the future. 
 
 If the user logs in, a form becomes visible under the events list to create a new event. 
 
