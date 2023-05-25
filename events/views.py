@@ -27,13 +27,14 @@ class EventList(generics.ListCreateAPIView):
         filters.SearchFilter,
         DjangoFilterBackend,
     ]
-    filterset_fields = [
-        'owner__followed__owner__profile',
-        'interested__owner__profile',
-        'going__owner__profile',
-        'owner__profile',
-        'category',
-    ]
+    filterset_fields = {
+        'owner__followed__owner__profile': ['exact'],
+        'interested__owner__profile': ['exact'],
+        'going__owner__profile': ['exact'],
+        'owner__profile': ['exact'],
+        'category': ['exact'],
+        'event_date': ['lte'],
+    }
     search_fields = [
         'owner__username',
         'title',
