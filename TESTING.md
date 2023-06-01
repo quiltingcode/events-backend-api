@@ -96,7 +96,7 @@ The Happening API has been passed through the internal PEP8 validation tests whi
 * urls.py - No problems or warnings found
 * views.py - No problems or warnings found
 
-## Automatic Testing
+## Automated Testing
 
 The following automatic tests have been written into the Happening API, in order to cover all the user story scenarios. These are the tests that were created: 
 
@@ -255,7 +255,7 @@ As well as the automatic tests which can be found in each app's testing.py file,
 
 | Status | **Contact**
 |:-------:|:--------|
-| &check; | Logged in user can create comment
+| &check; | Logged in user can create a contact message
 
 
 ## Known Bugs

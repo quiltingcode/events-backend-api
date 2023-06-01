@@ -34,18 +34,6 @@ class ContactListViewTests(APITestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    # def test_logged_in_user_can_create_contact(self):
-    #     self.client.login(username='kelly', password='letmein')
-    #     current_user = User.objects.get(username='kelly')
-    #     greg = User.objects.get(username='greg')
-    #     profile = Profile.objects.get(id=2)
-    #     response = self.client.post(
-    #         '/contact/', {
-    #             'owner': current_user, 'profile': profile, 'message': 'boo'
-    #         }
-    #     )
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
 
 class ContactDetailViewTests(APITestCase):
     def setUp(self):
