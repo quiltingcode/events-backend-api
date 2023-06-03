@@ -8,8 +8,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class EventList(generics.ListCreateAPIView):
     """
-    List posts or create a post if logged in
-    The perform_create method associates the post with the logged in user.
+    List events or create an event if logged in
+    The perform_create method associates the event with the logged in user.
     """
     serializer_class = EventSerializer
     permission_classes = [
@@ -57,6 +57,9 @@ class EventList(generics.ListCreateAPIView):
 
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve an event, or update or delete it by id if you own it.
+    """
     serializer_class = EventSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Event.objects.annotate(

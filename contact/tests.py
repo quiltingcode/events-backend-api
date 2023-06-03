@@ -6,6 +6,9 @@ from rest_framework.test import APITestCase
 
 
 class ContactListViewTests(APITestCase):
+    """
+    Tests for the Contact model list view
+    """
     def setUp(self):
         kelly = User.objects.create_user(username='kelly', password='letmein')
         greg = User.objects.create_user(username='greg', password='pass')
@@ -36,6 +39,9 @@ class ContactListViewTests(APITestCase):
 
 
 class ContactDetailViewTests(APITestCase):
+    """
+    Tests for the Contact model detail view
+    """
     def setUp(self):
         kelly = User.objects.create_user(username='kelly', password='letmein')
         greg = User.objects.create_user(username='greg', password='pass')

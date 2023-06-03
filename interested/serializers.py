@@ -4,6 +4,9 @@ from django.db import IntegrityError
 
 
 class InterestedSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Interested model
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:

@@ -9,6 +9,9 @@ from taggit.serializers import (TagListSerializerField,
 
 
 class EventSerializer(TaggitSerializer, serializers.ModelSerializer):
+    """
+    Serializer for the Event model
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')

@@ -4,6 +4,9 @@ from events.models import Event
 
 
 class Going(models.Model):
+    """
+    Going model, related to User
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(
         Event, related_name='going', on_delete=models.CASCADE

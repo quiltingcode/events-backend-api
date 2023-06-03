@@ -14,7 +14,9 @@ EVENT_CATEGORIES = (
 
 
 class Event(models.Model):
-
+    """
+    Event model, related to User
+    """
     image_filter_choices = [
         ('_1977', '1977'), ('brannan', 'Brannan'),
         ('earlybird', 'Earlybird'), ('hudson', 'Hudson'),
@@ -24,7 +26,7 @@ class Event(models.Model):
         ('toaster', 'Toaster'), ('valencia', 'Valencia'),
         ('walden', 'Walden'), ('xpro2', 'X-pro II')
     ]
-
+    
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

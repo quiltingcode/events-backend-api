@@ -6,6 +6,9 @@ from rest_framework.test import APITestCase
 
 
 class InterestedListViewTests(APITestCase):
+    """
+    Tests for the Interested model list view
+    """
     def setUp(self):
         kelly = User.objects.create_user(username='kelly', password='letmein')
         event_a = Event.objects.create(owner=kelly, title='a fun event')
@@ -35,7 +38,9 @@ class InterestedListViewTests(APITestCase):
 
 
 class InterestedDetailViewTests(APITestCase):
-
+    """
+    Tests for the Interested model detail view
+    """
     def setUp(self):
         kelly = User.objects.create_user(username='kelly', password='letmein')
         greg = User.objects.create_user(username='greg', password='pass')

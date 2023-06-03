@@ -5,6 +5,9 @@ from rest_framework.test import APITestCase
 
 
 class FollowerListViewTests(APITestCase):
+    """
+    Tests for the Follower model list view
+    """
     def setUp(self):
         kelly = User.objects.create_user(username='kelly', password='letmein')
         greg = User.objects.create_user(username='greg', password='pass')
@@ -48,6 +51,9 @@ class FollowerListViewTests(APITestCase):
 
 
 class FollowerDetailViewTests(APITestCase):
+    """
+    Tests for the Follower model detail view
+    """
     def setUp(self):
         kelly = User.objects.create_user(username='kelly', password='letmein')
         greg = User.objects.create_user(username='greg', password='pass')

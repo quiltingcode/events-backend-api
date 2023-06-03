@@ -4,6 +4,9 @@ from django.db import IntegrityError
 
 
 class GoingSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Going model
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
@@ -13,6 +16,9 @@ class GoingSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
+        """
+        Validation to stop a user posting going to the same event twice
+        """
         try:
             return super().create(validated_data)
         except IntegrityError:

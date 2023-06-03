@@ -4,6 +4,9 @@ from events.models import Event
 
 
 class Review(models.Model):
+    """
+    Review model, related to Event
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(
         Event, related_name='reviews', on_delete=models.CASCADE
