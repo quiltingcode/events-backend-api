@@ -143,7 +143,7 @@ I have created the following models for the Happening Backend API:
  * Contact (To send a message to the email address in a profile)
 
 The relationships between all of these models is summarized in the followed entity relationship diagram:
-![erd](images/events-erd.drawio.png)
+![erd](https://res.cloudinary.com/dkolsfjkx/image/upload/v1685955455/events-erd2_hejg6i.jpg)
 
 # Features
 
