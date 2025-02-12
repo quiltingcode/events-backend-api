@@ -11,12 +11,60 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
 import dj_database_url
 import re
+import psycopg2
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 if os.path.exists('env.py'):
     import env
+
+# # Fetch variables
+# USER = os.getenv("user")
+# PASSWORD = os.getenv("password")
+# HOST = os.getenv("host")
+# PORT = os.getenv("port")
+# DBNAME = os.getenv("dbname")
+
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+
+
+# try:
+#     connection = psycopg2.connect(
+#         user=USER,
+#         password=PASSWORD,
+#         host=HOST,
+#         port=PORT,
+#         dbname=DBNAME
+#     )
+#     print("Connection successful!")
+    
+#     # Create a cursor to execute SQL queries
+#     cursor = connection.cursor()
+    
+#     # Example query
+#     cursor.execute("SELECT NOW();")
+#     result = cursor.fetchone()
+#     print("Current Time:", result)
+
+#     # Close the cursor and connection
+#     cursor.close()
+#     connection.close()
+#     print("Connection closed.")
+
+# except Exception as e:
+#     print(f"Failed to connect: {e}")
+
+# try:
+#     # Establish a connection to the database
+#     conn = psycopg2.connect(DATABASE_URL)
+#     print("Connection successful!")
+#     conn.close()  # Close the connection
+# except Exception as e:
+#     print(f"Error: {e}")
 
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
@@ -67,6 +115,10 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
    os.environ.get('ALLOWED_HOST'),
    'localhost',
+   '127.0.0.1',
+   '0.0.0.0',
+   '79.145.69.237',
+   '192.168.1.39'
 ]
 
 
@@ -115,7 +167,9 @@ MIDDLEWARE = [
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
+        os.environ.get('CLIENT_ORIGIN'),
+        "http://localhost:19000",  # for local testing from your computer
+        "exp://79.145.69.237:19000", # for testing on your phone
     ]
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
@@ -150,7 +204,7 @@ WSGI_APPLICATION = 'events_api.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-if 'DEV' in os.environ:
+if not os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -159,7 +213,7 @@ if 'DEV' in os.environ:
     }
 else:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
     
 
